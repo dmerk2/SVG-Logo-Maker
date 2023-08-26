@@ -34,8 +34,10 @@ const questions = [
 ];
 
 // Function to create logo.svg file
-const writeToFile = (fileName, data) => {
-  fs.writeFileSync(fileName, data, (err) => console.error("Error: ", err));
+const writeToFile = async (fileName, data) => {
+  await fs.promises.writeFile(fileName, data, (err) =>
+    console.error("Error: ", err)
+  );
 };
 
 const generateLogo = (answers) => {
