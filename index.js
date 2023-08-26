@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const createLogo = require("./lib/shapes");
+const { Circle, Triangle, Square } = require("./lib/shapes.js");
 
 const questions = [
   {
@@ -16,59 +16,57 @@ const questions = [
     },
   },
   {
+    type: "input",
+    name: "fontColor",
+    message: "What color or hexademial value would you like your text to be?",
+  },
+  {
     type: "list",
     name: "shape",
-    message: "Select the sape you would like for you logo",
+    message: "Select the shape you would like for you logo",
     choices: ["Circle", "Triangle", "Square"],
   },
   {
     type: "input",
     name: "color",
     message: "What color or hexademial value would you like for your logo?",
-    validate: function (input) {
-      if (isValidColor(input)) {
-        return true;
-      } else {
-        return "Please enter a valid color or hexadecimal value.";
-      }
-    },
-  },
-  {
-    type: "input",
-    name: "fontColor",
-    message:
-      "What color or hexademial value would you like for your font to be for your logo?",
-    validate: function (input) {
-      if (isValidColor(input)) {
-        return true;
-      } else {
-        return "Please enter a valid color or hexadecimal value.";
-      }
-    },
   },
 ];
-
-const isValidColor = (input) => {
-  // Check if the input is a valid hexadecimal color code
-  const hexColorRegex = /^#([0-9a-fA-F]{3}){1,2}$/;
-
-  return hexColorRegex.test(input);
-};
 
 // Function to create logo.svg file
 const writeToFile = (fileName, data) => {
   fs.writeFileSync(fileName, data, (err) => console.error("Error: ", err));
 };
 
+const generateLogo = (answers) => {
+  let logoGenerator;
+
+  switch (answers.shape) {
+    case "Circle":
+      logoGenerator = new Circle(answers);
+      break;
+    case "Triangle":
+      logoGenerator = new Triangle(answers);
+      break;
+    case "Square":
+      logoGenerator = new Square(answers);
+      break;
+    default:
+      console.error("Invalid shape");
+      return;
+  }
+
+  const logo = logoGenerator.generateLogoSVG();
+  writeToFile("./examples/logo.svg", logo);
+  console.log("Generated logo.svg!");
+};
+
 // Initializing app
 const init = () => {
   inquirer
     .prompt(questions)
-    // Take the responses from the questions and create logo.svg
     .then((responses) => {
-      const logo = createLogo(responses);
-      writeToFile("./examples/logo.svg", logo);
-      console.log("Generated logo.svg!");
+      generateLogo(responses);
     })
     .catch((err) => {
       console.error("Error: ", err);
