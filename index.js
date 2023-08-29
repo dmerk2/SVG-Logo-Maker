@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const { Circle, Triangle, Square } = require("./lib/shapes.js");
+const SVGLogo = require("./lib/svgLogo.js");
 
 const questions = [
   {
@@ -40,26 +41,29 @@ const writeToFile = async (fileName, data) => {
   );
 };
 
-const generateLogo = (answers) => {
+const generateLogo = ({ text, fontColor, shape, color }) => {
   let logoGenerator;
 
-  switch (answers.shape) {
+  switch (shape) {
     case "Circle":
-      logoGenerator = new Circle(answers);
+      logoGenerator = new Circle();
       break;
     case "Triangle":
-      logoGenerator = new Triangle(answers);
+      logoGenerator = new Triangle();
       break;
     case "Square":
-      logoGenerator = new Square(answers);
+      logoGenerator = new Square();
       break;
     default:
       console.error("Invalid shape");
       return;
   }
 
-  const logo = logoGenerator.generateLogoSVG();
-  writeToFile("./examples/logo.svg", logo);
+  logoGenerator.setColor(color);
+  const logoSvg = new SVGLogo();
+  logoSvg.generateText(text, fontColor);
+  logoSvg.generateShape(logoGenerator);
+  writeToFile("./examples/logo.svg", logoSvg.generateLogoSVG());
   console.log("Generated logo.svg!");
 };
 
@@ -67,8 +71,8 @@ const generateLogo = (answers) => {
 const init = () => {
   inquirer
     .prompt(questions)
-    .then((responses) => {
-      generateLogo(responses);
+    .then(({ text, fontColor, shape, color }) => {
+      generateLogo({ text, fontColor, shape, color });
     })
     .catch((err) => {
       console.error("Error: ", err);
