@@ -71,6 +71,7 @@ const generateLogo = ({ text, fontColor, shape, color }) => {
 const init = () => {
   inquirer
     .prompt(questions)
+    // Destructure the data for text, fontColor, shape, and color
     .then(({ text, fontColor, shape, color }) => {
       generateLogo({ text, fontColor, shape, color });
     })
