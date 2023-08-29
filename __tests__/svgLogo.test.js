@@ -1,4 +1,4 @@
-const SVGLogo = require("./svgLogo");
+const SVGLogo = require("../lib/svgLogo");
 
 // Test for the svgLogo class
 describe("SVGLogo", () => {
