@@ -19,7 +19,7 @@ const questions = [
   {
     type: "input",
     name: "fontColor",
-    message: "What color or hexademial value would you like your text to be?",
+    message: "What color would you like your text to be?",
   },
   {
     type: "list",
@@ -30,7 +30,7 @@ const questions = [
   {
     type: "input",
     name: "color",
-    message: "What color or hexademial value would you like for your logo?",
+    message: "What color would you like your logo?",
   },
 ];
 
