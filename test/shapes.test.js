@@ -6,4 +6,10 @@ describe("ShapeGenerator", () => {
     shape.setColor("blue");
     expect(shape.color).toBe("blue");
   });
+
+  test("render method throws cb error when not called in child classes", () => {
+    const cb = () => new ShapeGenerator().render();
+    const err = new Error("render method must be overridden in child classes");
+    expect(cb).toThrowError(err);
+  });
 });
