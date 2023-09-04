@@ -25,7 +25,7 @@
   3. Circle, Triangle, or Square
   4. Color or hexadecimal number for the SVG
 - Required to input strictly 3 characters
-- With entered data, a new logo will be generated named logo.svg in examples folder
+- With entered data, a new logo will be generated named logo.svg in dist folder
 - The logo will be a 300x200 pixel image
 - Using Jest for test driven development I tested for the following
   1. If the triangle results the correct color and shape attributes
