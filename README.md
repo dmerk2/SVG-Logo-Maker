@@ -50,11 +50,11 @@
 
 ## Usage
 
-![README generator](./assets/images/preview.gif)
+![README generator](./dist/preview.gif)
 
 ## Walkthrough Video
 
-Click the lightning bolt [⚡]() to see the README generator in action.
+Click the lightning bolt [⚡](https://watch.screencastify.com/v/7pcIsTQRW786UYXYFpEe) to see the README generator in action.
 
 ## License
 
