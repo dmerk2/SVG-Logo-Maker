@@ -65,7 +65,7 @@ const generateLogo = ({ text, fontColor, shape, color }) => {
   const logoSvg = new SVGLogo();
   logoSvg.generateText(text, fontColor);
   logoSvg.generateShape(logoGenerator);
-  writeToFile("./examples/logo.svg", logoSvg.generateLogoSVG());
+  writeToFile("./dist/logo.svg", logoSvg.generateLogoSVG());
   console.log("Generated logo.svg!");
 };
 
