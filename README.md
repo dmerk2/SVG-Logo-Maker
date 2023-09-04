@@ -54,7 +54,7 @@
 
 ## Walkthrough Video
 
-Click the lightning bolt [⚡](https://watch.screencastify.com/v/7pcIsTQRW786UYXYFpEe) to see the README generator in action.
+Click the lightning bolt [⚡](https://watch.screencastify.com/v/7pcIsTQRW786UYXYFpEe) to see the SVG Logo Generator generator in action.
 
 ## License
 
